@@ -1,0 +1,33 @@
+# This default profile is used when running a single instance completely standalone:
+spring:
+  profiles: default
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/hanseungsoo/InterfaceConfig.git
+server:
+  port: 8080
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+---
+
+spring:
+  profiles: peer-1
+server:
+  port: 8080
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
